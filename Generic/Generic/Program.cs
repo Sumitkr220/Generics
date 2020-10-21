@@ -4,7 +4,7 @@ namespace Generic
 {
     class Program
     {
-        public static float MaximumIntegerNumber(float firstValue, float secondValue,float thirdValue)
+        public static string MaximumIntegerNumber(string firstValue, string secondValue,string thirdValue)
         {
             if(firstValue.CompareTo(secondValue) > 0 && firstValue.CompareTo(thirdValue)>0 ||
                firstValue.CompareTo(secondValue) >= 0 && firstValue.CompareTo(thirdValue) > 0||
@@ -28,12 +28,12 @@ namespace Generic
         }
         static void Main(string[] args)
         {
-            float output1 = MaximumIntegerNumber(30.9f, 60.89f, 38.98f);
-            float output2 = MaximumIntegerNumber(309.8f, 600.98f, 900.8f);
-            float output3 = MaximumIntegerNumber(300.98f, 6000.80f, 909.809f);
-            Console.WriteLine("Maximum number is: " +output1);
-            Console.WriteLine("Maximum number is: " + output2);
-            Console.WriteLine("Maximum number is: " + output3);
+            string output1 = MaximumIntegerNumber("abc", "xbc", "vbc");
+            string output2 = MaximumIntegerNumber("kbc", "fbc", "ebc");
+            string output3 = MaximumIntegerNumber("mbc", "dbc", "abc");
+            Console.WriteLine("Maximum value is: " +output1);
+            Console.WriteLine("Maximum value is: " + output2);
+            Console.WriteLine("Maximum value is: " + output3);
         }
     }
 }
