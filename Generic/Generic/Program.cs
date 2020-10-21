@@ -4,36 +4,42 @@ namespace Generic
 {
     class Program
     {
-        public static string MaximumIntegerNumber(string firstValue, string secondValue,string thirdValue)
+        class GenericMaximum<T> where T : IComparable
         {
-            if(firstValue.CompareTo(secondValue) > 0 && firstValue.CompareTo(thirdValue)>0 ||
-               firstValue.CompareTo(secondValue) >= 0 && firstValue.CompareTo(thirdValue) > 0||
-               firstValue.CompareTo(secondValue) > 0 && firstValue.CompareTo(thirdValue) >= 0)
+
+            public T[] value;
+            public GenericMaximum(T[] value)
             {
-                return firstValue;
+                this.value = value;
             }
-            if (secondValue.CompareTo(firstValue) > 0 && secondValue.CompareTo(thirdValue) > 0 ||
-              secondValue.CompareTo(firstValue) >= 0 && secondValue.CompareTo(thirdValue) > 0 ||
-              secondValue.CompareTo(firstValue) > 0 && secondValue.CompareTo(thirdValue) >= 0)
+
+            public T[] Sort(T[] values)
             {
-                return secondValue;
+                Array.Sort(values);
+                return values;
             }
-            if (thirdValue.CompareTo(firstValue) > 0 && thirdValue.CompareTo(secondValue) > 0 ||
-             thirdValue.CompareTo(firstValue) >= 0 && thirdValue.CompareTo(secondValue) > 0 ||
-             thirdValue.CompareTo(firstValue) > 0 && thirdValue.CompareTo(secondValue) >= 0)
+            public T MaxValue(params T[] values)
             {
-                return thirdValue;
+                var sorted_values = Sort(values);
+                return sorted_values[sorted_values.Length - 1];
             }
-            return firstValue;
+            public void PrintMaxValue()
+            {
+                var max = MaxValue(this.value);
+                Console.WriteLine("Maximum value is " + max);
+            }
         }
         static void Main(string[] args)
         {
-            string output1 = MaximumIntegerNumber("abc", "xbc", "vbc");
-            string output2 = MaximumIntegerNumber("kbc", "fbc", "ebc");
-            string output3 = MaximumIntegerNumber("mbc", "dbc", "abc");
-            Console.WriteLine("Maximum value is: " +output1);
-            Console.WriteLine("Maximum value is: " + output2);
-            Console.WriteLine("Maximum value is: " + output3);
+            int[] intArray = { 112, 344, 432 };
+            GenericMaximum<int> generic = new GenericMaximum<int>(intArray);
+            generic.PrintMaxValue();
+            double[] doubleArray = { 11.2, 34.4, 4.32 };
+            GenericMaximum<double> genericDouble = new GenericMaximum<double>(doubleArray);
+            genericDouble.PrintMaxValue();
+            string[] stringArray = { "111", "222", "333"};
+            GenericMaximum<string> genericString = new GenericMaximum<string>(stringArray);
+            genericString.PrintMaxValue();
         }
     }
 }
